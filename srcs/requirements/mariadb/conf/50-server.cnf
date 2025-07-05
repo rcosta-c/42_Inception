@@ -1,0 +1,30 @@
+[server]
+
+[mysqld]
+user = mysql
+pid-file = /run/mysqld/mysqld.pid
+basedir = /usr
+datadir = /var/lib/mysql
+tmpdir = /tmp
+lc-messages-dir = /usr/share/mysql
+lc-messages = en_US
+skip-external-locking
+
+bind-address = 0.0.0.0
+port = 3306
+
+# Logs
+expire_logs_days = 10
+log_error = /var/log/mysql/error.log
+
+# Charset
+character-set-server = utf8mb4
+collation-server = utf8mb4_general_ci
+
+# Performance
+max_connections = 100
+innodb_buffer_pool_size = 128M
+
+[embedded]
+[mariadb]
+[mariadb-10.5]

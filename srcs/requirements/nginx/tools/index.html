@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inception - Nginx</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #00ff00;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            padding: 40px;
+            border: 2px solid #00ff00;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .services {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .service {
+            border: 1px solid #00ff00;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: rgba(0, 255, 0, 0.05);
+        }
+        .service h2 {
+            margin-bottom: 15px;
+            color: #00ff00;
+        }
+        .status {
+            font-size: 20px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🐳 Inception Project</h1>
+        <p>Sistema a funcionar com múltiplos serviços!</p>
+        
+        <div class="services">
+            <div class="service">
+                <h2>📦 Nginx</h2>
+                <p class="status">✅ Ativo</p>
+                <p>Porta: 443 (HTTPS)</p>
+            </div>
+            
+            <div class="service">
+                <h2>🗄️ MariaDB</h2>
+                <p class="status">✅ Ativo</p>
+                <p>Porta: 3306</p>
+                <p>Database: wordpress_db</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

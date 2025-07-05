@@ -1,0 +1,79 @@
+version: '3.8'
+
+services:
+  nginx:
+    container_name: nginx
+    build: ./requirements/nginx
+    ports:
+      - "443:443"
+      - "80:80"
+    volumes:
+      - wordpress_data:/var/www/wordpress
+    restart: always
+    networks:
+      - inception
+    depends_on:
+      - wordpress
+
+  mariadb:
+    container_name: mariadb
+    build: ./requirements/mariadb
+    env_file: .env
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    networks:
+      - inception
+    secrets:
+      - mysql_rootpassword
+      - mysql_user
+      - mysql_password
+
+  wordpress:
+    container_name: wordpress
+    build: ./requirements/wordpress
+    depends_on:
+      - mariadb
+    volumes:
+      - wordpress_data:/var/www/wordpress
+    env_file: .env
+    networks:
+      - inception
+    secrets:
+      - mysql_user
+      - mysql_password
+      - wp_admin_user
+      - wp_adminpassword
+      - wp_admin_mail
+
+volumes:
+  db_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/rc/data/database
+  wordpress_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/rc/data/wordpress
+
+networks:
+  inception:
+    driver: bridge
+
+secrets:
+  mysql_rootpassword:
+    file: ../secrets/mysql_rootpassword
+  mysql_user:
+    file: ../secrets/mysql_user
+  mysql_password:
+    file: ../secrets/mysql_password
+  wp_admin_user:
+    file: ../secrets/wp_admin_user
+  wp_adminpassword:
+    file: ../secrets/wp_adminpassword
+  wp_admin_mail:
+    file: ../secrets/wp_admin_mail
