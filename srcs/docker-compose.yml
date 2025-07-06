@@ -6,7 +6,6 @@ services:
     build: ./requirements/nginx
     ports:
       - "443:443"
-      - "80:80"
     volumes:
       - wordpress_data:/var/www/wordpress
     restart: always

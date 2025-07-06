@@ -1,19 +1,19 @@
 
-FROM debian:buster
+FROM debian:bullseye
 
 RUN apt-get update && apt-get install -y \
-    php7.3-fpm \
-    php7.3-mysql \
-    php7.3-mysqli \
-    php7.3-curl \
-    php7.3-gd \
-    php7.3-intl \
-    php7.3-mbstring \
-    php7.3-xml \
-    php7.3-zip \
-    php7.3-bcmath \
-    php7.3-json \
-    php7.3-opcache \
+    php7.4-fpm \
+    php7.4-mysql \
+    php7.4-mysqli \
+    php7.4-curl \
+    php7.4-gd \
+    php7.4-intl \
+    php7.4-mbstring \
+    php7.4-xml \
+    php7.4-zip \
+    php7.4-bcmath \
+    php7.4-json \
+    php7.4-opcache \
     wget \
     curl \
     mariadb-client \
@@ -25,7 +25,7 @@ RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.ph
 
 RUN mkdir -p /run/php
 
-COPY conf/www.conf /etc/php/7.3/fpm/pool.d/www.conf
+COPY conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
 
 COPY tools/wordpress_setup.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/wordpress_setup.sh

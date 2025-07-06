@@ -3,7 +3,7 @@
 # Variáveis
 DOCKER_COMPOSE = docker-compose
 DOCKER_COMPOSE_FILE = ./srcs/docker-compose.yml
-DATA_PATH = /home/rc/data
+DATA_PATH = ~/data
 
 # Cores para output
 GREEN = \033[0;32m
@@ -22,7 +22,7 @@ setup:
 
 up:
 	@echo "$(GREEN)Starting containers...$(RESET)"
-	@$(DOCKER_COMPOSE) -f $(DOCKER_COMPOSE_FILE) up -d --build
+	@$(DOCKER_COMPOSE) -f $(DOCKER_COMPOSE_FILE) up -d --build 
 	@echo "$(GREEN)Containers started!$(RESET)"
 	@echo "$(YELLOW)Please wait 30 sec for WordPress config...$(RESET)"
 	
@@ -44,15 +44,6 @@ status:
 
 logs:
 	@cd srcs && $(DOCKER_COMPOSE) logs -f
-
-logs-db:
-	@cd srcs && $(DOCKER_COMPOSE) logs -f mariadb
-
-logs-nginx:
-	@cd srcs && $(DOCKER_COMPOSE) logs -f nginx
-
-logs-wp:
-	@cd srcs && $(DOCKER_COMPOSE) logs -f wordpress
 
 clean: down
 	@echo "$(RED)Cleaning images...$(RESET)"

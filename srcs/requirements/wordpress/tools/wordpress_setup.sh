@@ -103,10 +103,10 @@ else
 fi
 
 log "Configurating PHP-FPM..."
-sed -i 's/listen = .*/listen = 9000/' /etc/php/7.3/fpm/pool.d/www.conf
-sed -i 's/;listen.owner = .*/listen.owner = www-data/' /etc/php/7.3/fpm/pool.d/www.conf
-sed -i 's/;listen.group = .*/listen.group = www-data/' /etc/php/7.3/fpm/pool.d/www.conf
-sed -i 's/;listen.mode = .*/listen.mode = 0660/' /etc/php/7.3/fpm/pool.d/www.conf
+sed -i 's/listen = .*/listen = 9000/' /etc/php/7.4/fpm/pool.d/www.conf
+sed -i 's/;listen.owner = .*/listen.owner = www-data/' /etc/php/7.4/fpm/pool.d/www.conf
+sed -i 's/;listen.group = .*/listen.group = www-data/' /etc/php/7.4/fpm/pool.d/www.conf
+sed -i 's/;listen.mode = .*/listen.mode = 0660/' /etc/php/7.4/fpm/pool.d/www.conf
 
 # Permissions
 log "correcting permissions..."
@@ -120,7 +120,7 @@ chown -R www-data:www-data /var/lib/php/sessions
 chown -R www-data:www-data /run/php
 
 log "Checking PHP-FPM config..."
-if ! php-fpm7.3 -t; then
+if ! php-fpm7.4 -t; then
     log "ERROR: Invalid config in PHP-FPM!"
     exit 1
 fi
@@ -128,4 +128,4 @@ fi
 unset SQL_USER SQL_PASS WP_ADMIN_USER WP_ADMIN_PASS WP_ADMIN_EMAIL WP_USER WP_USER_PASSWORD WP_USER_EMAIL
 
 log "Starting PHP-FPM..."
-exec php-fpm7.3 -F
+exec php-fpm7.4 -F
