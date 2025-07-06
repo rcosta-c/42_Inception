@@ -1,4 +1,4 @@
-	# Makefile
+# Makefile
 
 # Variáveis
 DOCKER_COMPOSE = docker-compose
@@ -63,15 +63,21 @@ fclean: clean
 re: fclean all
 
 info:
+	@echo ""
 	@echo "$(BLUE)=== Inception Project Info ===$(RESET)"
-	@echo "$(GREEN)URL:$(RESET) https://localhost"
-	@echo "$(GREEN)URL:$(RESET) https://localhost/wp-admin"
-	@echo "$(GREEN)Admin Login:$(RESET) admin / admin42pass"
-	@echo "$(GREEN)User Login:$(RESET) user / user42pass"
-	@echo "$(GREEN)Database:$(RESET) wordpress_db"
-	@echo "$(GREEN)DB User:$(RESET) wpuser / wpuser42pass"
-	@echo "$(YELLOW)Before start add the following to your hosts $(RESET)"
-	@echo "$(YELLOW)sudo nano /etc/hosts $(RESET) and write $(YELLOW) 127.0.0.1	rcosta-c.42.fr $(RESET)"
-	@echo "$(YELLOW)Volumes:$(RESET) $(DATA_PATH)"
+	@if [ -f srcs/.env ]; then \
+		echo "$(GREEN)Domain:$(RESET) $$(grep DOMAIN_NAME srcs/.env | cut -d'=' -f2)"; \
+		echo "$(GREEN)Database:$(RESET) $$(grep MYSQL_DATABASE srcs/.env | cut -d'=' -f2)"; \
+		echo "$(GREEN)Site Title:$(RESET) $$(grep WP_TITLE srcs/.env | cut -d'=' -f2)"; \
+	fi
+	@if [ -d secrets ]; then \
+		echo ""; \
+		echo "$(GREEN)Admin User:$(RESET) $$(cat secrets/wp_admin_user 2>/dev/null)"; \
+		echo "$(GREEN)Admin Pass:$(RESET) $$(cat secrets/wp_adminpassword 2>/dev/null)"; \
+		echo "$(GREEN)DB User:$(RESET) $$(cat secrets/mysql_user 2>/dev/null)"; \
+		echo "$(GREEN)DB Pass:$(RESET) $$(cat secrets/mysql_password 2>/dev/null)"; \
+	fi
+	@echo ""
+	@echo "$(YELLOW)Add to /etc/hosts: 127.0.0.1 $$(grep DOMAIN_NAME srcs/.env | cut -d'=' -f2)$(RESET)"
 
 .PHONY: all setup up down stop start status logs logs-db logs-nginx logs-wp clean fclean re info
