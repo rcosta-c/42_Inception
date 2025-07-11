@@ -1,0 +1,5 @@
+
+# Environment and secrets
+.env
+srcs/.env
+secrets/

@@ -51,13 +51,13 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/rc/data/database
+      device: /home/${USER}/data/database
   wordpress_data:
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: /home/rc/data/wordpress
+      device: /home/${USER}/data/wordpress
 
 networks:
   inception:

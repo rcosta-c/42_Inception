@@ -151,21 +151,6 @@ EOF
 
 echo -e "${GREEN}✓ .env file created${NC}"
 
-# Create .env.example
-echo -e "${BLUE}Creating .env.example...${NC}"
-cat > srcs/.env.example << 'EOF'
-#MariaDB configuration
-MYSQL_DATABASE=wordpress
-#WP configuration
-DOMAIN_NAME=login.42.fr
-WP_TITLE=Inception Project
-WP_USER=user
-WP_USER_PASSWORD=changeme
-WP_USER_EMAIL=user@42.fr
-EOF
-
-echo -e "${GREEN}✓ .env.example created${NC}"
-
 # Update .gitignore
 if ! grep -q "secrets/" .gitignore 2>/dev/null; then
     echo -e "${BLUE}Updating .gitignore...${NC}"

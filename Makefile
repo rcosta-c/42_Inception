@@ -16,8 +16,8 @@ all: setup up info
 
 setup:
 	@echo "$(YELLOW)Creating data folders...$(RESET)"
-	@mkdir -p $(DATA_PATH)/database
-	@mkdir -p $(DATA_PATH)/wordpress
+	@mkdir -p /home/$(USER)/data/database
+	@mkdir -p /home/$(USER)/data/wordpress
 	@echo "$(GREEN)Folders created!$(RESET)"
 
 up:
