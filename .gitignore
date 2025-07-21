@@ -1,0 +1,8 @@
+/srcs/.env
+
+/secrets/mysql_rootpass
+/secrets/mysql_user
+/secrets/mysql_password
+/secrets/wp_admin_mail
+/secrets/wp_admin_user
+/secrets/wp_adminpassword
