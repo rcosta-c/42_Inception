@@ -35,6 +35,7 @@ services:
       - mariadb
     volumes:
       - wordpress_data:/var/www/wordpress
+    restart: always
     env_file: .env
     networks:
       - inception
